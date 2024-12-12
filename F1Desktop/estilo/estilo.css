@@ -1,0 +1,86 @@
+/* Gael Horta Calzada UO295662 */
+section > div { /* Especificidad: 0,0,0,2 */
+  width: 80vh;
+  height: 30vh;
+  display: none; 
+}
+section > div.show { /* Especificidad: 0,0,1,2 */
+  display: block; 
+}
+article { /* Especificidad: 0,0,0,1 */
+  position: relative;
+  width: 90%;
+  max-width: 100%;
+  height: 30vh; 
+  overflow: hidden;
+  border-radius: 1em; /* Este estilo no afecta colores */
+}
+
+article img { /* Especificidad: 0,0,0,2 */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Este estilo no afecta colores */
+}
+
+article button { /* Especificidad: 0,0,0,2 */
+  position: absolute;
+  top: 45%;
+  width: 8%; 
+  height: 8%;
+  border: none; /* Sin bordes visibles, no hay color heredado aquí */
+  border-radius: 50%;
+  background: #1f3541; /* Color fijo, no heredado */
+  color: #BFC7D4; /* Color fijo del texto, no heredado */
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+
+article button:hover { /* Especificidad: 0,0,1,2 */
+  transform: scale(1.1); 
+}
+
+article button:nth-of-type(1) { /* Especificidad: 0,0,1,2 */
+  left: 3%; 
+}
+
+article button:nth-of-type(2) { /* Especificidad: 0,0,1,2 */
+  right: 3%; 
+}
+
+@media (max-width: 768px) {
+  body { /* Especificidad: 0,0,0,1 */
+    padding: 5%;
+  }
+
+  section:nth-of-type(1) img, /* Especificidad: 0,0,1,2 */
+  section:nth-of-type(2), /* Especificidad: 0,0,1,1 */
+  article {
+    width: 100%; 
+    height: 40vh; 
+  }
+
+  article img { /* Especificidad: 0,0,0,2 */
+    height: auto;
+    max-height: 250px; /* Dimensiones, no afecta colores */
+  }
+
+  article button { /* Especificidad: 0,0,0,2 */
+    width: 8%; 
+    height: 8%;
+    top: 46%; 
+    font-size: 0.9rem; 
+  }
+}
+
+main > article canvas {
+  width: 100%; /* Escalar automáticamente al contenedor */
+  height: auto; /* Mantener proporciones */
+  background-color: #5289b5;
+  margin: 1em auto;
+  display: block;
+}

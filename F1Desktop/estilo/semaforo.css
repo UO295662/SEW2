@@ -1,0 +1,151 @@
+main { /* Especificidad: 0,0,0,1 */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.grid-container { /* Especificidad: 0,0,0,1 */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+}
+
+.grid-container h2 { /* Especificidad: 0,0,0,2 */
+  text-align: center;
+  margin: 0;
+}
+
+.lights-container { /* Especificidad: 0,0,0,1 */
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.light { /* Especificidad: 0,0,0,1 */
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff; 
+  opacity: 0.5;
+  margin: 1rem;
+  transition: background-color 0.5s ease-in-out;
+  border: 0.25rem solid rgb(0, 0, 0);
+}
+
+@keyframes encender { 
+  0% {
+    background-color: #000;
+    color: #fff;
+  }
+  100% {
+    background-color: #ff0000;
+    color: #000;
+  }
+}
+
+.button-container { /* Especificidad: 0,0,0,1 */
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.reaction-paragraph { /* Especificidad: 0,0,0,1 */
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+main.load .light:nth-child(1) { /* Especificidad: 0,0,1,2 */
+  animation: encender 0.5s forwards;
+  animation-delay: 0s;
+}
+
+main.load .light:nth-child(2) { /* Especificidad: 0,0,1,2 */
+  animation: encender 0.5s forwards;
+  animation-delay: 0.5s;
+}
+
+main.load .light:nth-child(3) { /* Especificidad: 0,0,1,2 */
+  animation: encender 0.5s forwards;
+  animation-delay: 1s;
+}
+
+main.load .light:nth-child(4) { /* Especificidad: 0,0,1,2 */
+  animation: encender 0.5s forwards;
+  animation-delay: 1.5s;
+}
+
+form { /* Especificidad: 0,0,0,1 */
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+main.unload .light { /* Especificidad: 0,0,1,2 */
+  animation: out 0.1s forwards;
+}
+
+button { /* Especificidad: 0,0,0,1 */
+  padding: 1rem;
+  background-color: #1f3541;
+  color: #afd8f2;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  width: 20%; 
+}
+
+button:disabled { /* Especificidad: 0,0,1,1 */
+  background-color: #ccc;
+  color: #999; 
+  cursor: not-allowed;
+}
+section table {
+  width: 100%; /* 100% del contenedor padre */
+  border-collapse: collapse;
+  margin: 2rem 0; /* Usando 'rem' para una medida relativa */
+  font-size: 1rem; /* Relativo al tamaño de la fuente raíz */
+  text-align: left;
+  border: none; /* Eliminar borde */
+}
+
+section table thead tr {
+  background-color: #1f3541; /* Fondo del encabezado */
+  color: #ffffff; /* Texto blanco */
+}
+
+section table th, 
+section table td {
+  padding: 1rem 1.5rem; /* Usando 'rem' para medidas relativas */
+  border: 0.1rem solid #dddddd; /* Bordes ligeros con 'rem' */
+}
+
+section table tbody tr:nth-child(even) {
+  background-color: #f3f3f3; /* Color alternativo en filas pares */
+}
+
+section table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* Color de fondo para filas impares */
+}
+
+section table tbody tr:hover {
+  background-color: #e6f7ff; /* Fondo al pasar el mouse */
+}
+
+section table th {
+  font-weight: bold;
+  text-transform: uppercase; /* Encabezados en mayúsculas */
+}
+
+section table caption {
+  font-size: 1.2rem; /* Relativo al tamaño de la fuente raíz */
+  margin: 1.2rem 0; /* 'rem' para márgenes relativos */
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+}

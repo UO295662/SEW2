@@ -1,0 +1,89 @@
+* { /* Especificidad: 0,0,0,0 */
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+body { /* Especificidad: 0,0,0,1 */
+  font-family: Verdana, sans-serif; 
+  color: #1f3541; 
+  background-color: #afd8f2; 
+  margin: 15em; 
+  padding-top: 0;
+  padding-bottom: 0%;
+  display: flex;
+  flex-direction: column;
+}
+
+header { /* Especificidad: 0,0,0,1 */
+  background-color: #B0C8DE; 
+  /* Color de texto heredado de `body`*/
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  width: calc(100% + 30em); 
+  margin-left: -15em; 
+  margin-right: -15em; 
+  margin-top: -15em;
+}
+
+header nav { /* Especificidad: 0,0,0,2 */
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  margin: 0;
+}
+
+header nav a { /* Especificidad: 0,0,0,3 */
+  display: inline-block; 
+  margin: 0.5rem; 
+  padding: 0.5em; 
+  /* Color de fondo heredado */
+  color: #181F25;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav a:hover { /* Especificidad: 0,0,1,3 */
+  background-color: #1f3541; 
+  color: #afd8f2; 
+}
+
+h1 { /* Especificidad: 0,0,0,1 */
+  /* Color de texto heredado */
+  text-transform: uppercase;
+  padding: 1.5em;
+  text-align: center;
+}
+
+h1 a { /* Especificidad: 0,0,0,2 */
+  text-decoration: none;
+  color: inherit; /* Hereda el color de su contenedor `h1` */
+   /* Color de fondo heredado */
+}
+
+@media (max-width: 800px) {
+  body { /* Especificidad: 0,0,0,1 */
+      padding: 5%; 
+  }
+
+  header nav { /* Especificidad: 0,0,0,2 */
+      flex-direction: column; 
+      align-items: center; 
+  }
+
+  header nav a { /* Especificidad: 0,0,0,3 */
+      width: 100%;
+      text-align: center;
+  }
+
+  h1 { /* Especificidad: 0,0,0,1 */
+      padding: 1em;
+  }
+}
+
+nav { /* Especificidad: 0,0,0,1 */
+   /* Color de fondo heredado */
+   /* Color de texto heredado*/
+  padding: 1em;
+  text-align: center;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>F1 Desktop-Circuito</title>
+    <meta name="author" content="Gael Horta Calzada">
+    <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
+    <meta name="keywords" content="circuito, imola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <link rel="icon" href="multimedia/imagenes/favicon.ico">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" title="Ir a la página principal">F1 Desktop</a></h1>
+        <nav>
+            <a href="index.html" title="Inicio F1Dekstop">Inicio</a>
+            <a href="juegos.html" title="Juegos F1Dekstop">Juegos</a>
+            <a href="calendario.html" title="Calendario F1Dekstop">Calendario</a>
+            <a href="circuito.html" title="Circuito F1Dekstop">Circuito</a>
+            <a href="php/viajes.php" title="Viajes F1Dekstop">Viajes</a>
+            <a href="meteorologia.html" title="Meteorología F1Dekstop">Meteorología</a>
+            <a href="noticias.html" title="Noticias F1Dekstop">Noticias</a>
+            <a href="piloto.html" title="Piloto F1Dekstop">Piloto</a>
+        </nav>
+    </header>
+    <p>Estás en: <a href="index.html">Inicio</a> >> Circuito</p>
+    <main>
+        <section>
+            <h2>Cargar KML</h2>
+            <label for="kml-file">Selecciona archivo KML:</label>
+            <input type="file" id="kml-file" class="kml-file" accept=".kml">
+            <div class="map-container"></div>
+        </section>
+    
+        <section>
+            <h2>Cargar SVG</h2>
+            <label for="svg-file">Selecciona archivo SVG:</label>
+            <input type="file" id="svg-file" class="svg-file" accept=".svg">
+            <pre class="svg-container"></pre>
+        </section>
+    
+        <section>
+            <h2>Cargar XML</h2>
+            <label for="xml-file">Selecciona archivo XML:</label>
+            <input type="file" id="xml-file" class="xml-file" accept=".xml">
+            <pre class="xml-content"></pre>
+        </section>
+    </main>
+    <script src="js/circuito.js"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&">
+    </script>
+</body>
+</html>
