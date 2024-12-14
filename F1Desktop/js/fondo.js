@@ -28,7 +28,8 @@ class Fondo {
                         "background-image": `url(${imageUrl})`,
                         "background-size": "cover",
                         "background-repeat": "no-repeat",
-                        "background-attachment": "fixed"
+                        "background-attachment": "fixed",
+                        "background-position": "center"
                     });
                 } else {
                     console.log("No se encontró información para esta foto.");

@@ -21,21 +21,22 @@ class Agenda {
 
     mostrarCarreras(carreras) {
         const contenedor = $('[data-contenedor="carreras"]');
-        contenedor.empty(); 
+        contenedor.empty();
+        contenedor.append("<h3>Calendario de las Carreras de la Temporada</h3>"); 
         carreras.forEach(carrera => {
             const { raceName, date, time, Circuit } = carrera;
             const { circuitName, Location } = Circuit;
             const { lat, long, locality, country } = Location;
 
             const carreraHTML = `
-            <main class="carrera">
-                <h2>${raceName}</h2>
+            <section>
+                <h3>${raceName}</h3>
                 <p><b>Circuito:</b> ${circuitName}</p>
                 <p><b>Ubicación:</b> ${locality}, ${country}</p>
                 <p><b>Coordenadas:</b> Latitud: ${lat}, Longitud: ${long}</p>
                 <p><b>Fecha:</b> ${date}</p>
                 <p><b>Hora:</b> ${time}</p>
-            </main>
+            </section>
             <hr>`;
 
             contenedor.append(carreraHTML);

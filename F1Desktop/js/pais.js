@@ -97,16 +97,16 @@ class Pais {
                         diasProcesados[dia] = true;
                         console.log(urlIcono);
                         pronosticoHTML += `
-                                <h4>${dia}</4>
-                                <article style="display: flex; align-items: center;">
-                                    <img src="${urlIcono}" alt="${descripcion}" style="width: 10vw; height: auto; margin-right: 1em;">
+                                <aside>
+                                <p>${dia}</p>
+                                    <img src="${urlIcono}" alt="${descripcion}">
                                     <ul>
                                         <li>Temperatura Máxima: ${tempMax}°C</li>
                                         <li>Temperatura Mínima: ${tempMin}°C</li>
                                         <li>Humedad: ${humedad}%</li>
                                         <li>Cantidad de Lluvia: ${cantidadLluvia} mm</li>
                                     </ul>
-                                </article>
+                                </aside>
                         `;
                     }
                 });

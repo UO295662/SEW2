@@ -71,7 +71,7 @@ class Viajes {
             mapaEstatico.classList.add("mapaEstatico");
             ubicacion.appendChild(mapaEstatico);
         }
-        const apiKey = "&key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU";
+        const apiKey = "&key=AIzaSyAQz2BOIGZarND4L4WVBfRCqCigjJ2f4PU";
         const url = "https://maps.googleapis.com/maps/api/staticmap?";
         const centro = `center=${this.latitud},${this.longitud}`;
         const zoom = "&zoom=15";

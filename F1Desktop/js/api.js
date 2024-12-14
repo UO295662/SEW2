@@ -77,14 +77,15 @@ class F1App {
         const gap = 45;
         const chartHeight = this.resultChartCanvas.height;
         const chartWidth = this.resultChartCanvas.width;
+        const topMargin = 35; // Margen superior adicional para que las barras empiecen más arriba
         
         ctx.clearRect(0, 0, chartWidth, chartHeight);
     
         // Dibuja las barras
         for (let i = 0; i < carreras.length; i++) {
-            const x = (i * (barWidth + gap)) + 100;  // Ajustamos la posición X para que las barras estén centradas
-            const y = chartHeight - (posiciones[i] * 25);  // Multiplicamos la posición por un factor de escala mayor
-            const height = posiciones[i] * 25;  // Escala de la altura de la barra
+            const x = (i * (barWidth + gap)) + 100; // Ajustamos la posición X para que las barras estén centradas
+            const height = posiciones[i] * 20; // Escala de la altura de la barra
+            const y = chartHeight - height - topMargin; // Ajustamos para empezar las barras más arriba
             const color = '#1f3541';
     
             ctx.fillStyle = color;
@@ -100,25 +101,24 @@ class F1App {
             const textX = x + (barWidth / 2) - (textWidth / 2); // Centrar el número en la barra
             const textY = y + height / 2 + 5; // Colocamos el número un poco arriba del centro de la barra
     
-            ctx.fillText(positionText, textX, textY);  // Dibuja la posición en el centro de la barra
+            ctx.fillText(positionText, textX, textY); // Dibuja la posición en el centro de la barra
         }
     
         // Dibuja las etiquetas en el eje X (Carreras)
         ctx.fillStyle = 'white';
-        ctx.font = '1em  Arial';
+        ctx.font = '1em Arial';
     
         for (let i = 0; i < carreras.length; i++) {
-            const x = (i * (barWidth + gap)) + 100;  // Ajustamos la posición X de las etiquetas
-            const labelWidth = ctx.measureText(carreras[i]).width;  // Medimos el ancho de la etiqueta
+            const x = (i * (barWidth + gap)) + 100; // Ajustamos la posición X de las etiquetas
+            const labelWidth = ctx.measureText(carreras[i]).width; // Medimos el ancho de la etiqueta
     
-            // Posicionamos las etiquetas ligeramente debajo de la barra para evitar que se superpongan
-            const labelX = x + (barWidth / 2) - (labelWidth / 2);  // Centrar la etiqueta debajo de la barra
-            const labelY = chartHeight - 20;  // Espacio suficiente debajo de la barra para la etiqueta
+            // Posicionamos las etiquetas debajo de la barra
+            const labelX = x + (barWidth / 2) - (labelWidth / 2); // Centrar la etiqueta debajo de la barra
+            const labelY = chartHeight - 17; // Ajustamos para que la etiqueta quede debajo de la barra
     
-            ctx.fillText(carreras[i], labelX, labelY);  // Dibuja la etiqueta centrada debajo de la barra
+            ctx.fillText(carreras[i], labelX, labelY); // Dibuja la etiqueta centrada debajo de la barra
         }
     }
-
     // Método para activar pantalla completa
     toggleFullScreen() {
         if (document.documentElement.requestFullscreen) {

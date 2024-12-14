@@ -105,47 +105,78 @@ button:disabled { /* Especificidad: 0,0,1,1 */
   color: #999; 
   cursor: not-allowed;
 }
-section table {
-  width: 100%; /* 100% del contenedor padre */
+section table { /* Especificidad: 0,0,0,1 */
+  width: 100%; 
   border-collapse: collapse;
-  margin: 2rem 0; /* Usando 'rem' para una medida relativa */
-  font-size: 1rem; /* Relativo al tamaño de la fuente raíz */
+  margin: 2rem 0; 
+  font-size: 1rem; 
   text-align: left;
-  border: none; /* Eliminar borde */
+  border: none;
 }
 
-section table thead tr {
-  background-color: #1f3541; /* Fondo del encabezado */
-  color: #ffffff; /* Texto blanco */
+section table thead tr { /* Especificidad: 0,0,0,2 */
+  background-color: #1f3541; 
+  color: #ffffff; 
 }
 
 section table th, 
-section table td {
-  padding: 1rem 1.5rem; /* Usando 'rem' para medidas relativas */
-  border: 0.1rem solid #dddddd; /* Bordes ligeros con 'rem' */
+section table td { /* Especificidad: 0,0,0,2 */
+  padding: 1rem 1.5rem; 
+  border: 0.1rem solid #dddddd; 
 }
 
-section table tbody tr:nth-child(even) {
-  background-color: #f3f3f3; /* Color alternativo en filas pares */
+section table tbody tr { /* Especificidad: 0,0,0,2 */
+  background-color: #f3f3f3;
+  /*color heredado de body*/
 }
 
-section table tbody tr:nth-child(odd) {
-  background-color: #ffffff; /* Color de fondo para filas impares */
-}
-
-section table tbody tr:hover {
-  background-color: #e6f7ff; /* Fondo al pasar el mouse */
-}
-
-section table th {
+section table th { /* Especificidad: 0,0,0,2 */
   font-weight: bold;
-  text-transform: uppercase; /* Encabezados en mayúsculas */
+  text-transform: uppercase;
 }
 
-section table caption {
-  font-size: 1.2rem; /* Relativo al tamaño de la fuente raíz */
-  margin: 1.2rem 0; /* 'rem' para márgenes relativos */
-  font-weight: bold;
+
+ul { /* Especificidad: 0,0,0,1 */
+  list-style-type: square;
+  font-size: 1.2rem;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+ul li { /* Especificidad: 0,0,0,2 */
+  margin: 0.5rem 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+/* Estilo de los títulos h1, h2, h3, h4 */
+h1 { /* Especificidad: 0,0,0,1 */
+  text-transform: uppercase;
+  text-decoration: wavy;
+  padding: 1.5em;
   text-align: center;
-  color: #333333;
+  font-size: 3em;
 }
+
+h2 { /* Especificidad: 0,0,0,1 */
+  font-size: 2em;
+  text-decoration: double;
+}
+
+h3 { /* Especificidad: 0,0,0,1 */
+  font-size: 1.4em;
+}
+
+h4 { /* Especificidad: 0,0,0,1 */
+  font-size: 1em;
+}
+/* Estilo general del cuerpo */
+body { /* Especificidad: 0,0,0,1 */
+  font-family: Verdana, sans-serif;
+  color: #1f3541;
+  background-color: #afd8f2;
+  margin: 15em;
+  padding-top: 0;
+  padding-bottom: 0%;
+  display: flex;
+  flex-direction: column;
+}
+  
