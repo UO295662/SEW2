@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8">
+    <title>F1 Desktop - Meteorología</title>
+    <meta name="author" content="Gael Horta Calzada">
+    <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
+    <meta name="keywords" content="F1, Meteorología, Pronóstico del Tiempo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo/article_elements.css">    
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <link rel="icon" href="multimedia/imagenes/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" title="Ir a la página principal">F1 Desktop</a></h1>
+        <nav>
+            <a href="index.html" title="Inicio F1Dekstop">Inicio</a>
+            <a href="juegos.html" title="Juegos F1Dekstop">Juegos</a>
+            <a href="calendario.html" title="Calendario F1Dekstop">Calendario</a>
+            <a href="circuito.html" title="Circuito F1Dekstop">Circuito</a>
+            <a href="php/viajes.php" title="Viajes F1Dekstop">Viajes</a>
+            <a href="meteorologia.html" title="Meteorología F1Dekstop" class="active">Meteorología</a>
+            <a href="noticias.html" title="Noticias F1Dekstop">Noticias</a>
+            <a href="piloto.html" title="Piloto F1Dekstop">Piloto</a>
+        </nav>
+    </header>
+
+    <p>Estás en: <a href="index.html">Inicio</a> >> Meteorología</p>
+
+    <main>
+        <h2>Pronóstico Meteorológico</h2>
+
+        <article>
+            <h3>Información del País</h3>
+        </article>
+
+        <section>
+            <h3>Pronóstico para los próximos 5 dias:</h3>
+        </section>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const pais = new Pais("Italia", "Roma", 58990000);
+                pais.inicializarDetalles("Enzo e Dino Ferrari", "República parlamentaria unitaria", 44.34389, 11.71667, "Catolicismo");
+                document.querySelector("article").innerHTML += `<h4>${pais.getNombre()}</h4>`;
+                document.querySelector("article").innerHTML += `<h4>${pais.getCapital()}</h4>`;
+                document.querySelector("article").innerHTML +=  pais.getInformacionSecundaria();
+                pais.getInformacionSecundaria();
+                pais.escribirCoordenadasMeta();
+                pais.obtenerClima();
+            });
+        </script>
+    </main>
+    <script src="js/pais.js" defer></script>
+</body>
+</html>
