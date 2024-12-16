@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8">
+    <title>F1 Desktop-Piloto</title>
+    <meta name="author" content="Gael Horta Calzada">
+    <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
+    <meta name="keywords" content="ricciardo, piloto">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <link rel="icon" href="multimedia/imagenes/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html" title="Ir a la página principal">F1 Desktop</a></h1>
+        <nav>
+            <a href="index.html" title="Inicio F1Dekstop">Inicio</a>
+            <a href="juegos.html" title="Juegos F1Dekstop">Juegos</a>
+            <a href="calendario.html" title="Calendario F1Dekstop">Calendario</a>
+            <a href="circuito.html" title="Circuito F1Dekstop">Circuito</a>
+            <a href="php/viajes.php" title="Viajes F1Dekstop">Viajes</a>
+            <a href="meteorologia.html" title="Meteorología F1Dekstop">Meteorología</a>
+            <a href="noticias.html" title="Noticias F1Dekstop">Noticias</a>
+            <a href="piloto.html" title="Piloto F1Dekstop" class="active">Piloto</a>
+        </nav>
+    </header>
+    <p>Estás en: <a href="index.html">Inicio</a> >> Piloto</p>
+    <main>
+        <h2>Piloto</h2>
+        
+        <section>
+            <h3>Datos personales</h3>
+            <p>Nombre: Daniel Ricciardo </p>
+            <p>Dorsal: 3</p>
+            <p>Fecha de nacimiento: 1 de julio de 1989</p>
+            <p>Lugar de nacimiento: Perth, Australia</p>
+            <p>Lugar de residencia: Mónaco</p>
+            
+            <picture>
+                <source srcset="multimedia/imagenes/ricciardo_mobile.png" media="(max-width: 465px)">
+                <source srcset="multimedia/imagenes/ricciardo_tablet.png" media="(max-width: 799px)">
+                <source srcset="multimedia/imagenes/ricciardo_monitor.png" media="(min-width: 800px)">
+                <img src="multimedia/imagenes/ricciardo_monitor.png" alt="Daniel Ricciardo" loading="lazy">
+            </picture>
+        </section>
+        <section>
+            <h3>Presentación</h3>
+            <p>
+                Daniel Ricciardo es un piloto de Fórmula 1 reconocido por su talento, carisma y estilo de conducción agresivo. 
+                A lo largo de su carrera ha demostrado ser un piloto competitivo y constante, destacándose en varias temporadas 
+                por su habilidad para realizar adelantamientos espectaculares. Desde su debut en 2011, Ricciardo ha competido 
+                para varios equipos de renombre, incluyendo Red Bull Racing y McLaren.
+            </p>
+        </section>
+            <aside>
+                <h3>Aficiones</h3>
+                <ul>
+                    <li>Ciclismo</li>
+                    <li>Tenis</li>
+                    <li>Viajar</li>
+                    <li>Motociclismo</li>
+                    <li>Videojuegos</li>
+                </ul>
+            </aside>
+        <section>  
+            <h3>Equipos</h3>
+            <ol>
+                <li>HRT</li>
+                <li>Toro Rosso</li>
+                <li>Red Bull Racing</li>
+                <li>Renault</li>
+                <li>McLaren</li>
+                <li>Red Bull Racing</li>        
+                <li>AlphaTauri / Visa CashApp RB</li>
+            </ol>
+        </section>  
+        <section>
+            <h3>Conceptos de Fórmula 1</h3>
+            <dl>
+                <dt>Pit Stop</dt>
+                <dd>Detención breve en boxes para cambiar neumáticos o realizar ajustes en el coche.</dd>
+                <dt>Pole</dt>
+                <dd>Posición de salida más avanzada en la carrera, obtenida durante la clasificación.</dd>
+                <dt>Rake</dt>
+                <dd>Ángulo de inclinación del coche, que afecta a la aerodinámica.</dd>
+                <dt>Efecto Suelo</dt>
+                <dd>Generación de carga aerodinámica mediante la forma del coche y el flujo de aire.</dd>
+                <dt>DRS</dt>
+                <dd>Sistema de reducción de arrastre que permite aumentar la velocidad en ciertas zonas de la pista.</dd>
+            </dl>
+        </section>
+        <section>
+            <h3>Resultados destacados (últimos 3 años)</h3>
+            <ul>
+                <li>2021
+                    <ul>
+                        <li>Fórmula 1
+                            <ul>
+                                <li>1er lugar - Gran Premio de Italia</li>
+                                <li>4to lugar - Gran Premio de Rusia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>2022
+                    <ul>
+                        <li>Fórmula 1
+                            <ul>
+                                <li>5to lugar - Gran Premio de Singapur</li>
+                                <li>6to lugar - Gran Premio de Australia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>2023
+                    <ul>
+                        <li>Fórmula 1
+                            <ul>
+                                <li>7mo lugar - Gran Premio de México</li>
+                                <li>11vo lugar - Gran Premio de Abu Dabi</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Resultados de Daniel Ricciardo - Última Temporada</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" id="puntos">Puntos</th>
+                        <th scope="col" id="posicion">Posición</th>
+                        <th scope="col" id="poles">Poles</th>
+                        <th scope="col" id="victorias">Victorias</th>
+                        <th scope="col" id="podios">Podios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td headers="puntos">6</td>
+                        <td headers="posicion">17º</td>
+                        <td headers="poles">0</td>
+                        <td headers="victorias">0</td>
+                        <td headers="podios">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Enlaces externos</h3>
+            <p>Puedes buscar más información en estas páginas web externas:</p>
+            <a href="https://www.formula1.com/en/drivers/daniel-ricciardo" title="Fórmula 1" target="_blank">Página oficial de Daniel Ricciardo en F1</a>
+            <br>
+            <a href="https://es.wikipedia.org/wiki/Daniel_Ricciardo" title="Wikipedia Ricciardo" target="-blank">Wikipedia de Daniel Ricciardo</a>
+        </section>
+
+        <section>
+            <h3>Multimedia</h3>
+            <h4>Foto: Monoplaza de AlphaTauri en 2024</h4>
+            <img src="multimedia/imagenes/Monoplaza2024.jpg" loading="lazy" alt="Daniel Ricciardo" width="712" height="400">
+
+            <h4>Video: Mejores momentos de Daniel Ricciardo</h4>
+            <video controls width="600" >
+                <source src="multimedia/videos/UltimateDanielRicciardoOvertakesCompilation.mp4" type="video/mp4">
+                <source src="multimedia/videos/UltimateDanielRicciardoOvertakesCompilation.webm" type="video/webm">
+            </video>
+            <h4>Audio: Entrevista post carrera de Daniel Ricciardo 2024</h4>
+            <audio controls>
+                <source src="multimedia/audios/EmotionalDanielRicciardoPostRaceInterview2024.mp3" type="audio/mp3">
+                <source src="multimedia/audios/EmotionalDanielRicciardoPostRaceInterview2024.wav" type="audio/wav">
+            </audio>
+        </section>
+    </main>
+</body>
+</html>
