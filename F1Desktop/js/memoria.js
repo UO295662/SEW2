@@ -39,24 +39,21 @@ class Memoria {
             return;
         }
     
-        // Crear o limpiar el contenedor de tarjetas
         let cardsContainer = document.querySelector('main section');
         if (!cardsContainer) {
             cardsContainer = document.createElement('section');
             main.appendChild(cardsContainer);
         } else {
-            cardsContainer.innerHTML = ''; // Limpiar las tarjetas anteriores
+            cardsContainer.innerHTML = ''; 
         }
     
-        // Añadir el heading dentro del contenedor de tarjetas si no existe
         let heading = cardsContainer.querySelector('h2');
         if (!heading) {
             heading = document.createElement('h2');
             heading.innerHTML = "Juego de Memoria";
-            cardsContainer.prepend(heading); // Coloca el heading al inicio del contenedor
+            cardsContainer.prepend(heading); 
         }
     
-        // Crear las tarjetas
         this.elements.forEach(card => {
             const article = document.createElement('article');
             article.dataset.element = card.element;

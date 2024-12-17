@@ -1,14 +1,13 @@
 class Noticias {
     constructor() {
         if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-            alert("Este navegador no soporta la API File.");
         }
     }
 
     // Leer el archivo de texto de noticias
     readInputFile(files) {
         const archivo = files[0];
-        const [nombreArchivo, tamañoArchivo, tipoArchivo, ultimaModificacion, errorLectura] = document.querySelectorAll("main > p");
+        const [errorLectura] = document.querySelectorAll("main > p");
 
         if (!archivo.type.match(/text.*/)) {
             errorLectura.innerText = "Error: ¡Archivo no válido!";
@@ -83,7 +82,6 @@ class Noticias {
             autor.value = "";
             descripcion.value = "";
         } else {
-            alert("Por favor, completa todos los campos: título, autor y descripción.");
         }
     }
 }

@@ -127,6 +127,7 @@ $resultadoConversion = $conversion->convertir($cantidad);
     <meta name="author" content="Gael Horta Calzada">
     <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="F1, viajes, mapas, carrusel">
     <link rel="icon" href="../multimedia/imagenes/favicon.ico">
     <link rel="stylesheet" href="../estilo/estilo.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="../estilo/layout.css">

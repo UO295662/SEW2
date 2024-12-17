@@ -25,11 +25,6 @@ class BaseDeDatos {
         $result = $this->conexion->query("SHOW DATABASES LIKE '{$this->dbname}'");
         if ($result->num_rows == 0) {
             $query = "CREATE DATABASE {$this->dbname}";
-            if ($this->conexion->query($query)) {
-                echo "Base de datos creada correctamente.<br>";
-            } else {
-                echo "Error al crear la base de datos: " . $this->conexion->error . "<br>";
-            }
         }
         $this->conexion->select_db($this->dbname);
     }
@@ -37,11 +32,6 @@ class BaseDeDatos {
     public function eliminarBaseDeDatos() {
         $this->connect();
         $query = "DROP DATABASE IF EXISTS {$this->dbname}";
-        if ($this->conexion->query($query)) {
-            echo "Base de datos eliminada correctamente.<br>";
-        } else {
-            echo "Error al eliminar la base de datos: " . $this->conexion->error . "<br>";
-        }
     }
 
     public function crearTablas() {
@@ -171,6 +161,65 @@ class BaseDeDatos {
             fclose($fp);
         }
     }
+    public function exportarTodoCSV($archivo) {
+        $this->crearBaseDeDatos();
+        $tablas = ["equipos", "pilotos", "circuitos", "carreras", "resultados"];
+    
+        $fp = fopen($archivo, 'w');
+    
+        foreach ($tablas as $tabla) {
+            fputcsv($fp, ["#TABLE:$tabla"], ',');
+
+            $query = "SELECT * FROM $tabla";
+            $resultado = $this->conexion->query($query);
+    
+            if ($resultado) {
+                $columnas = $resultado->fetch_fields();
+                $headers = array_map(fn($col) => $col->name, $columnas);
+                fputcsv($fp, $headers, ',');
+    
+                while ($fila = $resultado->fetch_assoc()) {
+                    fputcsv($fp, $fila, ',');
+                }
+            }
+        }
+    
+        fclose($fp);
+    }
+    
+    public function importarTodoCSV($archivo) {
+    $this->crearBaseDeDatos();
+
+    if (!file_exists($archivo)) {
+        throw new Exception("El archivo CSV no existe.");
+    }
+    $this->conexion->query("SET FOREIGN_KEY_CHECKS=0");
+
+    $tablaActual = null;
+    $columnas = [];
+    if (($handle = fopen($archivo, 'r')) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            if (isset($data[0]) && strpos($data[0], "#TABLE:") === 0) {
+                $tablaActual = substr($data[0], 7);
+                $columnas = [];
+
+                $this->conexion->query("DELETE FROM $tablaActual");
+            } elseif ($tablaActual && empty($columnas)) {
+                $columnas = $data;
+            } elseif ($tablaActual && $columnas) {
+                $valores = implode("', '", array_map([$this->conexion, 'real_escape_string'], $data));
+                $columnasSQL = implode(", ", $columnas);
+                $query = "INSERT INTO $tablaActual ($columnasSQL) VALUES ('$valores')";
+                $this->conexion->query($query);
+            }
+        }
+        fclose($handle);
+    } else {
+        throw new Exception("No se pudo abrir el archivo CSV.");
+    }
+
+    $this->conexion->query("SET FOREIGN_KEY_CHECKS=1");
+    }
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = new BaseDeDatos();
@@ -190,7 +239,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } elseif ($_POST['accion'] == 'eliminarBaseDatos') {
         $db->eliminarBaseDeDatos();
+    }else if ($_POST['accion'] == 'exportarTodoCSV') {
+        $archivo = "base_de_datos_completa.csv";
+        $db->exportarTodoCSV($archivo);
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $archivo . '"');
+        readfile($archivo);
+        unlink($archivo);
+        exit();
+    }elseif ($_POST['accion'] == 'importarTodoCSV') {
+        if (isset($_FILES['archivo']['tmp_name']) && $_FILES['archivo']['tmp_name']) {
+            $db->importarTodoCSV($_FILES['archivo']['tmp_name']);
     }
+}
 }
 ?>
 
@@ -203,6 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
     <meta name="keywords" content="aplicacion, pilotos, grafica">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="F1, api, ejercicio libre">
     <link rel="stylesheet" type="text/css" href="../estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="../estilo/layout.css">
     <link rel="icon" href="../multimedia/imagenes/favicon.ico">
@@ -224,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
     </header>
 
-    <p>Estás en: <a href="index.html">Inicio</a> >> <a href="juegos.html">Juegos</a> >> Libre</p>
+    <p>Estás en: <a href="../index.html">Inicio</a> >> <a href="../juegos.html">Juegos</a> >> Libre</p>
     <h2>Variedad de juegos disponibles</h2>
     <ul>
         <li><a href="../memoria.html" title="Jugar al juego de memoria">Juego de Memoria</a></li>
@@ -261,6 +323,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select>
         <button type="submit" name="accion" value="exportarCSV">Exportar CSV</button>
     </form>
+    <form method="post">
+    <button type="submit" name="accion" value="exportarTodoCSV">Exportar Toda la Base de Datos a CSV</button>
+</form>
+
+<form method="post" enctype="multipart/form-data">
+    <label for="archivo">Archivo CSV:</label>
+    <input type="file" name="archivo" required>
+    <button type="submit" name="accion" value="importarTodoCSV">Importar Toda la Base de Datos desde CSV</button>
+</form>
     </main>
 </body>
 </html>

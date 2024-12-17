@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
-    <script src="js/fondo.js"></script> <!-- Incluir una sola vez -->
+    <script src="js/fondo.js"></script> 
 </head>
 <body>
     <header>
@@ -30,7 +30,7 @@
     <main>
         <script>
             $(document).ready(function () {
-                const fondo = new Fondo(); // Usar la clase ya cargada desde fondo.js
+                const fondo = new Fondo();
                 const photoId = "53733737143";
                 fondo.getImageById(photoId);
             });

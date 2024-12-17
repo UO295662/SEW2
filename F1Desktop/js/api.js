@@ -1,48 +1,41 @@
 class F1App {
     constructor() {
-        this.apiUrl = 'https://ergast.com/api/f1/current/drivers.json';  // API para obtener la lista de pilotos
-        this.pilotSelector = document.querySelector('select');  // Seleccionamos el primer <select> del documento
-        this.resultChartCanvas = document.querySelector('canvas'); // Seleccionamos el primer <canvas> del documento
-        this.fullscreenButtons = document.querySelectorAll('button'); // Seleccionamos todos los botones
-        this.message = "La página está minimizada"; // El mensaje que se mostrará
+        this.apiUrl = 'https://ergast.com/api/f1/current/drivers.json';  
+        this.pilotSelector = document.querySelector('select');  
+        this.resultChartCanvas = document.querySelector('canvas'); 
+        this.fullscreenButtons = document.querySelectorAll('button');
+        this.message = "La página está minimizada"; 
         this.init();
     }
 
-    // Método para inicializar la aplicación
     init() {
-        // Cargar los pilotos y configurar el evento de selección
         this.loadPilots();
 
-        // Evento para cargar los resultados del piloto seleccionado
         this.pilotSelector.addEventListener('change', (e) => {
             this.loadResults(e.target.value);
         });
 
-        // Evento para gestionar el cambio de visibilidad de la página
         document.addEventListener("visibilitychange", () => {
             this.handleVisibilityChange();
         });
     }
 
-    // Método para manejar el cambio de visibilidad
     handleVisibilityChange() {
         if (document.hidden) {
-            // Cuando la página está minimizada, seleccionar el primer piloto
-            this.loadPilots(); // Carga la lista de pilotos
-            const firstPilot = this.pilotSelector.options[0]?.value; // Obtener el primer piloto
+            this.loadPilots();
+            const firstPilot = this.pilotSelector.options[0]?.value; 
             if (firstPilot) {
-                this.loadResults(firstPilot); // Cargar los resultados del primer piloto
+                this.loadResults(firstPilot);
             }
         }
     }
 
-    // Método para cargar los pilotos desde la API
     loadPilots() {
         fetch(this.apiUrl)
             .then(response => response.json())
             .then(data => {
                 const pilotos = data.MRData.DriverTable.Drivers;
-                this.pilotSelector.innerHTML = ''; // Limpiar las opciones previas
+                this.pilotSelector.innerHTML = ''; 
 
                 pilotos.forEach(piloto => {
                     const option = document.createElement('option');
@@ -51,15 +44,13 @@ class F1App {
                     this.pilotSelector.appendChild(option);
                 });
 
-                // Si la página se vuelve visible después de minimizarse, no inicializamos el primer piloto
                 if (!document.hidden) {
                     const initialPilot = pilotos[0].driverId;
-                    this.loadResults(initialPilot); // Inicializamos el gráfico con el primer piloto seleccionado
+                    this.loadResults(initialPilot); 
                 }
             });
     }
 
-    // Método para cargar los resultados del piloto
     loadResults(driverId) {
         const resultsUrl = `https://ergast.com/api/f1/current/drivers/${driverId}/results.json`;
         const storageKey = `f1Results_${driverId}`;
@@ -79,7 +70,6 @@ class F1App {
         }
     }
 
-    // Método para procesar los resultados y dibujar el gráfico
     processResults(data) {
         const results = data.MRData.RaceTable.Races;
         const carreras = results.map(race => race.raceName.replace(" Grand Prix", ""));
@@ -88,58 +78,53 @@ class F1App {
         this.drawChart(carreras, posiciones);
     }
 
-    // Método para dibujar el gráfico
     drawChart(carreras, posiciones) {
-        const ctx = this.resultChartCanvas.getContext('2d');
-        const barWidth = 50;
-        const gap = 45;
-        const chartHeight = this.resultChartCanvas.height;
-        const chartWidth = this.resultChartCanvas.width;
-        const topMargin = 35; // Margen superior adicional para que las barras empiecen más arriba
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = canvas.offsetWidth;  
+        canvas.height = canvas.offsetHeight; 
+
+        const barWidth = canvas.width / (carreras.length * 1.8); 
+        const gap = barWidth * 0.8; 
+        const topMargin = canvas.height * 0.1; 
+        const chartHeight = canvas.height;
+        const chartWidth = canvas.width;
 
         ctx.clearRect(0, 0, chartWidth, chartHeight);
 
-        // Dibuja las barras
         for (let i = 0; i < carreras.length; i++) {
-            const x = (i * (barWidth + gap)) + 100; // Ajustamos la posición X para que las barras estén centradas
-            const height = posiciones[i] * 20; // Escala de la altura de la barra
-            const y = chartHeight - height - topMargin; // Ajustamos para empezar las barras más arriba
-            const color = '#1f3541';
+            const x = (i * (barWidth + gap)) + gap;
+            const height = (posiciones[i] / 10) * chartHeight * 0.6; 
+            const y = chartHeight - height - topMargin; 
 
-            ctx.fillStyle = color;
+            ctx.fillStyle = '#1f3541';
             ctx.fillRect(x, y, barWidth, height);
 
-            // Dibuja la posición dentro de la barra
             ctx.fillStyle = 'white';
-            ctx.font = '2em Arial';
-            const positionText = posiciones[i]; // El número de la posición
-            const textWidth = ctx.measureText(positionText).width; // Medir el ancho del texto para centrarlo
+            ctx.font = `${barWidth * 0.4}px Arial`;
+            const positionText = posiciones[i];
+            const textWidth = ctx.measureText(positionText).width;
 
-            // Posicionamos el texto dentro de la barra, centrado
-            const textX = x + (barWidth / 2) - (textWidth / 2); // Centrar el número en la barra
-            const textY = y + height / 2 + 5; // Colocamos el número un poco arriba del centro de la barra
+            const textX = x + (barWidth / 2) - (textWidth / 2);
+            const textY = y + height / 2 + barWidth * 0.2;
 
-            ctx.fillText(positionText, textX, textY); // Dibuja la posición en el centro de la barra
+            ctx.fillText(positionText, textX, textY);
         }
 
-        // Dibuja las etiquetas en el eje X (Carreras)
         ctx.fillStyle = 'white';
-        ctx.font = '1em Arial';
-
+        ctx.font = `${barWidth * 0.3}px Arial`; 
         for (let i = 0; i < carreras.length; i++) {
-            const x = (i * (barWidth + gap)) + 100; // Ajustamos la posición X de las etiquetas
-            const labelWidth = ctx.measureText(carreras[i]).width; // Medimos el ancho de la etiqueta
+            const x = (i * (barWidth + gap)) + gap;
+            const labelWidth = ctx.measureText(carreras[i]).width;
 
-            // Posicionamos las etiquetas debajo de la barra
-            const labelX = x + (barWidth / 2) - (labelWidth / 2); // Centrar la etiqueta debajo de la barra
-            const labelY = chartHeight - 17; // Ajustamos para que la etiqueta quede debajo de la barra
+            const labelX = x + (barWidth / 2) - (labelWidth / 2);
+            const labelY = chartHeight - topMargin / 4;
 
-            ctx.fillText(carreras[i], labelX, labelY); // Dibuja la etiqueta centrada debajo de la barra
+            ctx.fillText(carreras[i], labelX, labelY);
         }
     }
 }
-
-// Instanciamos la clase F1App cuando la página esté lista
 document.addEventListener('DOMContentLoaded', () => {
     new F1App();
 });

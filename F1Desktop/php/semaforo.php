@@ -47,8 +47,9 @@ class Record {
 
     public function getTopRecordsAsHTML($nivel) {
         $records = $this->getTopRecords($nivel);
+        $html = ""; // Initialize the variable to avoid the "undefined variable" error
         $html .= "<section><h3>Los 10 mejores récords para el nivel $nivel:</h3></section>";
-        $html .= "<section><table>
+        $html .= "<section><h2>Tabla</h2><table>
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -96,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Gael Horta Calzada">
     <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
+    <meta name="keywords" content="F1, juego,semáforo, reaccion">
     <link rel="stylesheet" href="../estilo/semaforo.css">
     <link rel="stylesheet" type="text/css" href="../estilo/layout.css">
     <link rel="icon" href="../multimedia/imagenes/favicon.ico">
@@ -129,9 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <main>
         <section>
-            <h2>Semáforo</h2>
-        </section>
-        <section>
+        <h2>Semáforo</h2>
             <?php if ($formSubmitted): ?>
                 <?php echo $recordsHTML; ?>
             <?php endif; ?>

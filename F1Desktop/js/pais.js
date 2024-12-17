@@ -10,6 +10,7 @@ class Pais {
     religionMayoritaria;
     apikey;
     unidades;
+    tipo;
     url;
 
     // Constructor para inicializar atributos principales
@@ -24,7 +25,7 @@ class Pais {
         this.coordenadasMetaLat = null;
         this.coordenadasMetaLon = null;
         this.religionMayoritaria = null;
-
+        this.tipo = "&mode=xml";
         this.apikey = "d03054a9e5b1d0670ed0163050447076"; 
         this.unidades = "&units=metric"; 
     }
@@ -36,7 +37,7 @@ class Pais {
         this.coordenadasMetaLat = coordenadasMetaLat;
         this.coordenadasMetaLon = coordenadasMetaLon;
         this.religionMayoritaria = religionMayoritaria;
-        this.url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.coordenadasMetaLat}&lon=${this.coordenadasMetaLon}&appid=${this.apikey}${this.unidades}`;
+        this.url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.coordenadasMetaLat}&lon=${this.coordenadasMetaLon}&appid=${this.apikey}${this.unidades}${this.tipo}`;
     }
 
     // Métodos que devuelven información principal
@@ -71,45 +72,49 @@ class Pais {
     }
     obtenerClima() {
         $.ajax({
-            dataType: "json",
+            dataType: "xml",
             url: this.url,
             method: 'GET',
             success: (datos) => {
-                const ciudad = datos.city.name || "Coordenadas indicadas";
-                const pronosticos = datos.list;
-                let pronosticoHTML='';
+                let pronosticoHTML = '';
                 let diasProcesados = {};
-        
-                pronosticos.forEach((pronostico) => {
-                    const fecha = new Date(pronostico.dt * 1000);
-                    const dia = fecha.toLocaleDateString();
-                    const hora = fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
-                    const tempMax = pronostico.main.temp_max;
-                    const tempMin = pronostico.main.temp_min;
-                    const humedad = pronostico.main.humidity;
-                    const cantidadLluvia = pronostico.rain?.["3h"] || 0;
-                    const icono = pronostico.weather[0].icon;
-                    const descripcion = pronostico.weather[0].description;
+
+                $('time', datos).each(function () {
+                    const fechaHora = $(this).attr("from");
+                    const fechaObj = new Date(fechaHora);
+                    const dia = fechaObj.toLocaleDateString();
+                    const hora = fechaObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    const tempMin = $('temperature', this).attr("min");
+                    const tempMax = $('temperature', this).attr("max");
+                    const humedad = $('humidity', this).attr("value");
+                    const viento = $('windSpeed', this).attr("mps");
+                    const descripcion = $('symbol', this).attr("name");
+                    const icono = $('symbol', this).attr("var");
                     const urlIcono = `https://openweathermap.org/img/wn/${icono}@2x.png`;
-        
+
+                    // Evita repetir días ya procesados
                     if (!diasProcesados[dia]) {
                         diasProcesados[dia] = true;
-                        console.log(urlIcono);
+
                         pronosticoHTML += `
-                                <aside>
+                            <aside>
                                 <p>${dia}</p>
-                                    <img src="${urlIcono}" alt="${descripcion}">
-                                    <ul>
-                                        <li>Temperatura Máxima: ${tempMax}°C</li>
-                                        <li>Temperatura Mínima: ${tempMin}°C</li>
-                                        <li>Humedad: ${humedad}%</li>
-                                        <li>Cantidad de Lluvia: ${cantidadLluvia} mm</li>
-                                    </ul>
-                                </aside>
+                                <img src="${urlIcono}" alt="${descripcion}">
+                                <ul>
+                                    <li>Hora: ${hora}</li>
+                                    <li>Temperatura Máxima: ${tempMax}°C</li>
+                                    <li>Temperatura Mínima: ${tempMin}°C</li>
+                                    <li>Humedad: ${humedad}%</li>
+                                    <li>Velocidad del Viento: ${viento} m/s</li>
+                                    <li>Descripción: ${descripcion}</li>
+                                </ul>
+                            </aside>
                         `;
                     }
                 });
+
+                // Muestra el resultado en una sección HTML
                 document.querySelector("section").innerHTML += pronosticoHTML;
             },
         });
