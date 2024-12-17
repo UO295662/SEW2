@@ -10,7 +10,7 @@ body { /* Especificidad: 0,0,1 */
 }
 
 /* Estilos de los enlaces externos */
-a[href^="http://"], a[href^="https://"] { /* Especificidad: 0,1,1 */
+  a[href^="http://"], a[href^="https://"] { /* Especificidad: 0,1,1 */
   text-decoration: underline;
   /*color de fondo heredado de body*/
   color: #1f3541;
@@ -92,7 +92,7 @@ table { /* Especificidad: 0,0,1 */
 th, td { /* Especificidad: 0,0,1 */
   padding: 1rem;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1rem solid #ddd;
 }
 
 th { /* Especificidad: 0,0,1 */
@@ -146,11 +146,11 @@ article button:hover { /* Especificidad: 0,1,2 */
 }
 
 article button:nth-of-type(1) { /* Especificidad: 0,1,2 */
-  left: 40%;
+  left: 25%;
 }
 
 article button:nth-of-type(2) { /* Especificidad: 0,1,2 */
-  right: 10%;
+  right: 25%;
 }
 
 article { /* Especificidad: 0,0,1 */
@@ -170,15 +170,17 @@ article img { /* Especificidad: 0,0,2 */
   transition: all 0.5s;
   object-fit: contain;
   border-radius: 0.5em;
+  background-color: #BFC7D4;
+  /*color heredado de body*/
 }
 
 main > article canvas { /* Especificidad: 0,0,3 */
-  width: 100%;
-  height: auto;
-  background-color: #5289b5;
-  /*color heredado de body*/
-  margin: 1em auto;
-  display: block;
+  width: 400%;
+  height: auto; 
+  background-color: #5289b5; 
+  display: block; 
+  margin: 0 auto;
+    /*color heredado de body*/
 }
 section div { /* Especificidad: 0,0,2 */
   min-width: 30%; 
@@ -186,9 +188,4 @@ section div { /* Especificidad: 0,0,2 */
 }
 section > input[type='file'] + article{
   visibility: hidden;
-}
-.carrusel-container {
-    display: flex;
-    overflow: hidden;
-    width: 100%; /* O ajusta el tamaño que desees */
 }
