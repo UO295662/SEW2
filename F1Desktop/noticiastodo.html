@@ -32,7 +32,7 @@
         <h2>Noticias</h2>
         <label>
             Seleccionar archivo con noticias:
-            <input type="file" onchange="noticia.readInputFile(this.files)"/>
+            <input type="file" onchange="noticia.readInputFile(this.files)">
         </label>
     
         <section>
@@ -42,20 +42,11 @@
         <section>
             <h3>Agregar Nueva Noticia</h3>
     
-            <label>
-                Título:
-                <input type="text" placeholder="Introduce el título de la noticia"/>
-            </label>
+            <label>Título:<input type="text" placeholder="Introduce el título de la noticia"/></label>
     
-            <label>
-                Autor:
-                <input type="text" placeholder="Introduce el nombre del autor"/>
-            </label>
+            <label>Autor:<input type="text" placeholder="Introduce el nombre del autor"/></label>
     
-            <label>
-                Descripción:
-                <textarea placeholder="Introduce la descripción de la noticia"></textarea>
-            </label>
+            <label>Descripción:<textarea placeholder="Introduce la descripción de la noticia">Descripción noticia</textarea></label>
     
             <button onclick="noticia.agregarNoticiaUsuario()">Agregar Noticia</button>
         </section>
