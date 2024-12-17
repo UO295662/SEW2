@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Gael Horta Calzada">
     <meta name="description" content="Documento basado en la F1 y Daniel Ricciardo">
+    <meta name="keywords" content="F1, juego,semáforo, reaccion">
     <link rel="stylesheet" href="../estilo/semaforo.css">
     <link rel="stylesheet" type="text/css" href="../estilo/layout.css">
     <link rel="icon" href="../multimedia/imagenes/favicon.ico">
@@ -37,35 +38,37 @@
 
     <main class="">
         <section>
-            <h2>Semáforo</h2>
-        </section>
-        <section>
+        <h2>Semáforo</h2>
                     </section>
-    <section class="grid-container"><h2>Juego del Semáforo</h2><section class="lights-container"><section class="light"></section><section class="light"></section><section class="light"></section><section class="light"></section></section><section class="button-container"><button>Arrancar Semáforo</button><button disabled="">Obtener Tiempo de Reacción</button></section><p class="reaction-paragraph">Tiempo de reacción: 0.445 segundos</p></section><form action="semaforo.php" method="POST">
+    <h2>Juego del Semáforo</h2><div class="semaforo"><div data-light="" class=""></div><div data-light="" class=""></div><div data-light="" class=""></div><div data-light="" class=""></div></div><div class="buttons-container"><button>Arrancar Semáforo</button><button disabled="">Obtener Tiempo de Reacción</button></div><p>Tiempo de reacción: 0.465 segundos</p><form action="semaforo.php" method="POST">
             <section>
+                <h3>Información Personal</h3>
                 <label>
                     Nombre:
                     <input type="text" name="nombre" required="">
                 </label>
             </section>
-            <section>    
+            <section>
+                <h3>Información Adicional</h3>
                 <label>
                     Apellidos:
                     <input type="text" name="apellidos" required="">
                 </label>
             </section>
-            <section>    
+            <section>
+                <h3>Dificultad del Juego</h3>
                 <label>
                     Dificultad:
-                    <input type="text" name="nivel" value="0.8" readonly="">
+                    <input type="text" name="nivel" value="0.5" readonly="">
                 </label>
             </section>
-            <section>    
+            <section>
+                <h3>Resultado</h3>
                 <label>
                     Tiempo de Reacción (s):
-                    <input type="text" name="tiempo" value="0.445" readonly="">
+                    <input type="text" name="tiempo" value="0.465" readonly="">
                 </label>
-            </section>    
+            </section>
             <input type="submit" value="Enviar">
         </form></main>
 
