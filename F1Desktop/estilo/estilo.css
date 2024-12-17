@@ -178,9 +178,9 @@ main > article canvas { /* Especificidad: 0,0,3 */
   width: 400%;
   height: auto; 
   background-color: #5289b5; 
+  /*color heredado de body*/
   display: block; 
   margin: 0 auto;
-    /*color heredado de body*/
 }
 section div { /* Especificidad: 0,0,2 */
   min-width: 30%; 

@@ -78,7 +78,7 @@ class Viajes {
         this.imagenMapa = url + centro + zoom + tamaño + marcador + sensor + apiKey;
         const contenido = `
             <h3>Mapa Estático</h3>
-            <img src="${this.imagenMapa}" alt="Mapa estático de Google" loading=lazy/>`;
+            <img src="${this.imagenMapa}" alt="Mapa estático de Google">`;
         mapaEstatico.innerHTML = contenido;
     }
 

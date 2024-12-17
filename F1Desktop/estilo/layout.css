@@ -71,7 +71,7 @@ nav { /* Especificidad: 0,0,1 */
 }
 nav a { /* Especificidad: 0,0,2 */
   text-decoration: none;
-  /*color de fondo heredado de body*/
+  /*color de fondo heredado de header*/
   color: #181F25;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -84,10 +84,11 @@ nav a:hover { /* Especificidad: 0,1,2 */
 }
 nav a.active { /* Especificidad: 0,1,2 */
   color: #000;
-  /*color de fondo heredado de body*/
+  /*color de fondo heredado de header*/
   font-weight: bold; 
 }
 header h1 a { /* Especificidad: 0,0,3 */
   text-decoration: none;
   color: #1f3541;
+  /*color de fondo heredado de header*/
 }
