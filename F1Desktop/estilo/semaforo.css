@@ -7,11 +7,9 @@ main {/* Especificidad: 0,0,1 */
 
 main div {/* Especificidad: 0,0,2 */
   grid-column: span 1; /* Cada div ocupa 1 columna */
-  background-color: #1f3541; /* Color de fondo */
   color: white;
   text-align: center;
   padding: 1rem;
-  border: 1px solid #13323d;
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
