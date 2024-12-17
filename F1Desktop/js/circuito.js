@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const xmlContent = document.querySelector('section:nth-of-type(3)'); 
     let map, infoWindow;
 
-    // Inicialización del mapa
     function initMap() {
         map = new google.maps.Map(mapDiv, {
             center: { lat: 44.342189, lng: 11.712222 },
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Manejo del archivo KML
     kmlInput.addEventListener("change", function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -70,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.readAsText(file);
     });
 
-    // Manejo del archivo SVG
     svgInput.addEventListener("change", function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();

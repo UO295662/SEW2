@@ -17,56 +17,40 @@ class Semaforo {
     createStructure() {
         const main = document.querySelector('main');
     
-        if (main.querySelector('[data-light]')) {
-            return; // Evita duplicar la estructura
+        if (main.querySelector('div')) {
+            return; 
         }
     
-        // Encabezado
         const header = document.createElement('h2');
         header.textContent = 'Juego del Semáforo';
         main.appendChild(header);
     
-        // Contenedor de luces
-        const semaforoContainer = document.createElement('div');
-        semaforoContainer.classList.add('semaforo');
-        main.appendChild(semaforoContainer);
-    
-        // Creación de luces
         this.lightsElements = [];
         for (let i = 0; i < this.lights; i++) {
             const light = document.createElement('div');
-            light.setAttribute('data-light', '');
-            semaforoContainer.appendChild(light); // Añadir las luces al contenedor
-            this.lightsElements.push(light); // Guarda referencia a las luces
+            main.appendChild(light);
+            this.lightsElements.push(light);
         }
     
-        // Contenedor de botones
-        const buttonsContainer = document.createElement('div');
-        buttonsContainer.classList.add('buttons-container');
-        main.appendChild(buttonsContainer);
-    
-        // Botón de iniciar
         this.startButton = document.createElement('button');
         this.startButton.textContent = 'Arrancar Semáforo';
         this.startButton.addEventListener('click', () => {
             this.initSequence();
         });
-        buttonsContainer.appendChild(this.startButton);
+        main.appendChild(this.startButton);
     
-        // Botón de reacción
         this.reactionButton = document.createElement('button');
         this.reactionButton.textContent = 'Obtener Tiempo de Reacción';
         this.reactionButton.disabled = true;
         this.reactionButton.addEventListener('click', () => {
             this.stopReaction();
         });
-        buttonsContainer.appendChild(this.reactionButton);
+        main.appendChild(this.reactionButton);
     
-        // Párrafo de resultado
         this.reactionParagraph = document.createElement('p');
         this.reactionParagraph.textContent = '';
         main.appendChild(this.reactionParagraph);
-    }   
+    } 
     initSequence() {
         this.startButton.disabled = true;
         const main = document.querySelector('main');

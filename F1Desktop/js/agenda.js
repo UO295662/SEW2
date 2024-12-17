@@ -31,11 +31,16 @@ class Agenda {
             const carreraHTML = `
             <section>
                 <h3>${raceName}</h3>
-                <p><b>Circuito:</b> ${circuitName}</p>
-                <p><b>Ubicación:</b> ${locality}, ${country}</p>
-                <p><b>Coordenadas:</b> Latitud: ${lat}, Longitud: ${long}</p>
-                <p><b>Fecha:</b> ${date}</p>
-                <p><b>Hora:</b> ${time}</p>
+                <h4>Circuito:</h4> 
+                <p>${circuitName}</p>
+                <h4>Ubicación:</h4> 
+                <p>${locality}, ${country}</p>
+                <h4>Coordenadas:</h4> 
+                <p>Latitud: ${lat}, Longitud: ${long}</p>
+                <h4>Fecha:</h4> 
+                <p>${date}</p>
+                <h4>Hora:</h4> 
+                <p>${time}</p>
             </section>
             <hr>`;
 

@@ -31,11 +31,11 @@
     <p>Estás en: <a href="index.html">Inicio</a> >> Noticias</p>
     <main>
         <h2>Noticias</h2>
-        <label>
+        <label for="archivoNoticias">
             Seleccionar archivo con noticias:
-            <input type="file" onchange="noticia.readInputFile(this.files)"/>
         </label>
-    
+        <input type="file" id="archivoNoticias" onchange="noticia.readInputFile(this.files)" />
+        
         <section>
             <h3>Contenedor para noticias</h3>
         </section>
@@ -43,11 +43,14 @@
         <section>
             <h3>Agregar Nueva Noticia</h3>
     
-            <label>Título:<input type="text" placeholder="Introduce el título de la noticia"/></label>
+            <label for="tituloNoticia">Título:</label>
+            <input type="text" id="tituloNoticia" placeholder="Introduce el título de la noticia" />
     
-            <label>Autor:<input type="text" placeholder="Introduce el nombre del autor"/></label>
+            <label for="autorNoticia">Autor:</label>
+            <input type="text" id="autorNoticia" placeholder="Introduce el nombre del autor" />
     
-            <label>Descripción:<textarea placeholder="Introduce la descripción de la noticia">Descripción noticia</textarea></label>
+            <label for="descripcionNoticia">Descripción:</label>
+            <textarea id="descripcionNoticia" placeholder="Introduce la descripción de la noticia">Descripción noticia</textarea>
     
             <button onclick="noticia.agregarNoticiaUsuario()">Agregar Noticia</button>
         </section>
@@ -56,5 +59,5 @@
             const noticia = new Noticias();
         </script>
     </main>
-</body>
+    </body>
 </html>

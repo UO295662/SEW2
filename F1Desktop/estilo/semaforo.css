@@ -1,20 +1,17 @@
-.semaforo {/* Especificidad: 0,1,0 */
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  justify-items: center;
-  margin: 1rem 0;
+main {/* Especificidad: 0,0,1 */
+  display: grid; /* Activar Grid Layout */
+  grid-template-columns: repeat(4, 1fr); /* Crear 4 columnas iguales */
+  gap: 1rem; /* Espacio entre columnas */
+  text-align: center;
 }
 
-.buttons-container {/* Especificidad: 0,1,0 */
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* Luces */
-div[data-light] {/* Especificidad: 0,1,1 */
+main div {/* Especificidad: 0,0,2 */
+  grid-column: span 1; /* Cada div ocupa 1 columna */
+  background-color: #1f3541; /* Color de fondo */
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #13323d;
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
@@ -22,8 +19,15 @@ div[data-light] {/* Especificidad: 0,1,1 */
   /*color heredado de body*/
   opacity: 0.5;
   transition: background-color 0.5s ease-in-out;
-  border: 0.25rem solid rgb(0, 0, 0);
+  border: 0.25rem solid rgb(0, 0, 0)
 }
+main h2{/* Especificidad: 0,0,2 */
+  grid-column: span 4;
+}
+main button{/* Especificidad: 0,0,2 */
+  grid-column:span 2;
+}
+
 
 /* Animación de luces */
 @keyframes encender {
@@ -38,22 +42,22 @@ div[data-light] {/* Especificidad: 0,1,1 */
 }
 
 /* Animaciones de luces con retrasos */
-main.load .semaforo div:nth-child(1) {/* Especificidad: 0,3,2 */
+main.load div:nth-child(3) {/* Especificidad: 0,3,2 */
   animation: encender 0.5s forwards;
   animation-delay: 0s;
 }
 
-main.load .semaforo div:nth-child(2) {/* Especificidad: 0,3,2 */
+main.load div:nth-child(4) {/* Especificidad: 0,3,2 */
   animation: encender 0.5s forwards;
   animation-delay: 0.5s;
 }
 
-main.load .semaforo div:nth-child(3) {/* Especificidad: 0,3,2 */
+main.load div:nth-child(5) {/* Especificidad: 0,3,2 */
   animation: encender 0.5s forwards;
   animation-delay: 1s;
 }
 
-main.load .semaforo div:nth-child(4) {/* Especificidad: 0,3,2 */
+main.load div:nth-child(6) {/* Especificidad: 0,3,2 */
   animation: encender 0.5s forwards;
   animation-delay: 1.5s;
 }
@@ -169,4 +173,7 @@ body {/* Especificidad: 0,0,1 */
 form {/* Especificidad: 0,0,1 */
   text-align: center;
   margin: 2rem 0 3rem;
+}
+section{/* Especificidad: 0,0,1 */
+  text-align: center;
 }

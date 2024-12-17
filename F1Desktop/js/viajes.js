@@ -120,14 +120,6 @@ class Viajes {
         var infoWindow = new google.maps.InfoWindow({
             content: "Estás aquí",
         });
-        var marcador = new google.maps.Marker({
-            position: { lat: this.latitud, lng: this.longitud },
-            map: mapaGeoposicionado,
-            title: "Tu ubicación",
-        });
-        marcador.addListener("click", function () {
-            infoWindow.open(mapaGeoposicionado, marcador);
-        });
     }
     initCarrusel() {
     const slides = document.querySelectorAll("img");
