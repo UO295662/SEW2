@@ -40,36 +40,28 @@
         <section>
         <h2>Semáforo</h2>
                     </section>
-    <h2>Juego del Semáforo</h2><div></div><div></div><div></div><div></div><button>Arrancar Semáforo</button><button disabled="">Obtener Tiempo de Reacción</button><p>Tiempo de reacción: 0.409 segundos</p><form action="semaforo.php" method="POST">
-            <section>
-                <h3>Información Personal</h3>
-                <label>
-                    Nombre:
-                    <input type="text" name="nombre" required="">
-                </label>
-            </section>
-            <section>
-                <h3>Información Adicional</h3>
-                <label>
-                    Apellidos:
-                    <input type="text" name="apellidos" required="">
-                </label>
-            </section>
-            <section>
-                <h3>Dificultad del Juego</h3>
-                <label>
-                    Dificultad:
-                    <input type="text" name="nivel" value="0.8" readonly="">
-                </label>
-            </section>
-            <section>
-                <h3>Resultado</h3>
-                <label>
-                    Tiempo de Reacción (s):
-                    <input type="text" name="tiempo" value="0.409" readonly="">
-                </label>
-            </section>
-            <input type="submit" value="Enviar">
+    <h2>Juego del Semáforo</h2><div></div><div></div><div></div><div></div><button>Arrancar Semáforo</button><button disabled="">Obtener Tiempo de Reacción</button><p>Tiempo de reacción: 0.148 segundos</p><form action="semaforo.php" method="POST">
+        <section>
+            <h3>Información Personal</h3>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required="">
+        </section>
+        <section>
+            <h3>Información Adicional</h3>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required="">
+        </section>
+        <section>
+            <h3>Dificultad del Juego</h3>
+            <label for="nivel">Dificultad:</label>
+            <input type="text" id="nivel" name="nivel" value="0.8" readonly="">
+        </section>
+        <section>
+            <h3>Resultado</h3>
+            <label for="tiempo">Tiempo de Reacción (s):</label>
+            <input type="text" id="tiempo" name="tiempo" value="0.148" readonly="">
+        </section>
+        <input type="submit" value="Enviar">
         </form></main>
 
     <script src="../js/semaforo.js"></script>
